@@ -3,7 +3,7 @@ package example
 import (
 	"fmt"
 
-	"github.com/rrzu/constMp"
+	"github.com/rrzu/cst"
 )
 
 const (
@@ -14,9 +14,9 @@ const (
 
 type Database string
 
-var database = &constMp.Cst[Database, any]{
-	Typ: constMp.DataTypeString,
-	Words: constMp.Words[Database, any]{
+var database = &cst.Cst[Database, any]{
+	Typ: cst.DataTypeString,
+	Words: cst.Words[Database, any]{
 		{
 			Value:  DatabaseZulin,
 			CnName: "zulin",
@@ -34,5 +34,5 @@ var database = &constMp.Cst[Database, any]{
 
 func init() {
 	fmt.Println("init database")
-	constMp.Register(TypDatabase, database)
+	cst.Register(TypDatabase, database)
 }

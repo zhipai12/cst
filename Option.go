@@ -1,4 +1,4 @@
-package constMp
+package cst
 
 // 选项数据结构
 type (

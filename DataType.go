@@ -1,4 +1,4 @@
-package constMp
+package cst
 
 // 数据类型
 const (

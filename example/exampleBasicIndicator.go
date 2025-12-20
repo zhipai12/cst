@@ -3,7 +3,8 @@ package example
 import (
 	"fmt"
 
-	"github.com/rrzu/constMp"
+	"github.com/rrzu/cst"
+
 	"github.com/rrzu/cst/common"
 )
 
@@ -30,9 +31,9 @@ type MineBasicIndicator struct {
 	Alias     *string                   `json:"alias"`   // 别名
 }
 
-var basicIndicator = &constMp.Cst[BasicIndicator, MineBasicIndicator]{
+var basicIndicator = &cst.Cst[BasicIndicator, MineBasicIndicator]{
 	Typ: "",
-	Words: constMp.Words[BasicIndicator, MineBasicIndicator]{
+	Words: cst.Words[BasicIndicator, MineBasicIndicator]{
 		{
 			Value:  BasicIndicatorDeliveryRate,
 			CnName: "发货率",
@@ -104,5 +105,5 @@ var basicIndicator = &constMp.Cst[BasicIndicator, MineBasicIndicator]{
 
 func init() {
 	fmt.Println("init basicIndicator")
-	constMp.Register(TypBasicIndicator, basicIndicator)
+	cst.Register(TypBasicIndicator, basicIndicator)
 }

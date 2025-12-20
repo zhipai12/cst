@@ -3,7 +3,7 @@ package example
 import (
 	"fmt"
 
-	"github.com/rrzu/constMp"
+	"github.com/rrzu/cst"
 )
 
 // 活动状态
@@ -18,9 +18,9 @@ const (
 // CPActivityStatus 活动状态
 type CPActivityStatus uint8
 
-var cPActivityStatus = &constMp.Cst[CPActivityStatus, any]{
-	Typ: constMp.DataTypeNumber,
-	Words: constMp.Words[CPActivityStatus, any]{
+var cPActivityStatus = &cst.Cst[CPActivityStatus, any]{
+	Typ: cst.DataTypeNumber,
+	Words: cst.Words[CPActivityStatus, any]{
 		{
 			Value:  CPActivityStatusNone,
 			CnName: "none",
@@ -40,12 +40,12 @@ var cPActivityStatus = &constMp.Cst[CPActivityStatus, any]{
 		{
 			Value:  CPActivityStatusOver,
 			CnName: "已结束",
-			Group:  &constMp.Group{"homePage"},
+			Group:  &cst.Group{"homePage"},
 		},
 	},
 }
 
 func init() {
 	fmt.Println("init cPActivityStatus")
-	constMp.Register(TypCPActivityStatus, cPActivityStatus)
+	cst.Register(TypCPActivityStatus, cPActivityStatus)
 }

@@ -3,7 +3,7 @@ package example
 import (
 	"fmt"
 
-	"github.com/rrzu/constMp"
+	"github.com/rrzu/cst"
 )
 
 // 展示单位
@@ -19,39 +19,39 @@ const (
 // DB 展示单位
 type DB int
 
-type MineDB *constMp.Cst[Database, any]
+type MineDB *cst.Cst[Database, any]
 
-var db = &constMp.Cst[DB, constMp.Options[Database, any]]{
-	Typ: constMp.DataTypeNumber,
-	Words: constMp.Words[DB, constMp.Options[Database, any]]{
+var db = &cst.Cst[DB, cst.Options[Database, any]]{
+	Typ: cst.DataTypeNumber,
+	Words: cst.Words[DB, cst.Options[Database, any]]{
 		{
 			Value:  DBNone,
 			CnName: "无",
 		},
 		{
 			Value:  DBMysql,
-			Group:  &constMp.Group{"OLTP"},
+			Group:  &cst.Group{"OLTP"},
 			CnName: "MySQL",
 			Mine:   database.ToOptions(),
 		},
 		{
 			Value:  DBPostgres,
-			Group:  &constMp.Group{"OLTP"},
+			Group:  &cst.Group{"OLTP"},
 			CnName: "Postgres",
 		},
 		{
 			Value:  DBOracle,
-			Group:  &constMp.Group{"OLTP"},
+			Group:  &cst.Group{"OLTP"},
 			CnName: "Oracle",
 		},
 		{
 			Value:  DBHologres,
-			Group:  &constMp.Group{"OLAP"},
+			Group:  &cst.Group{"OLAP"},
 			CnName: "Hologres",
 		},
 		{
 			Value:  DBClickhouse,
-			Group:  &constMp.Group{"OLAP"},
+			Group:  &cst.Group{"OLAP"},
 			CnName: "Clickhouse",
 		},
 	},
@@ -59,5 +59,5 @@ var db = &constMp.Cst[DB, constMp.Options[Database, any]]{
 
 func init() {
 	fmt.Println("init db")
-	constMp.Register(TypDB, db)
+	cst.Register(TypDB, db)
 }

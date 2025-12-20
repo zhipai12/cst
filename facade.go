@@ -1,4 +1,4 @@
-package constMp
+package cst
 
 import (
 	"sync"

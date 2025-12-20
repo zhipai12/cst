@@ -1,4 +1,4 @@
-package constMp
+package cst
 
 type (
 	// IConstVal 常量取值范围

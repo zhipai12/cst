@@ -1,11 +1,11 @@
 package example
 
-import "github.com/rrzu/constMp"
+import "github.com/rrzu/cst"
 
 const (
-	TypCPActivityStatus constMp.Typ[CPActivityStatus, any]              = "CPActivityStatus"
-	TypBasicIndicator   constMp.Typ[BasicIndicator, MineBasicIndicator] = "BasicIndicator"
-	TypShowUnit         constMp.Typ[ShowUnit, any]                      = "ShowUnit"
-	TypDB               constMp.Typ[DB, constMp.Options[Database, any]] = "DB"
-	TypDatabase         constMp.Typ[Database, any]                      = "Database"
+	TypCPActivityStatus cst.Typ[CPActivityStatus, any]              = "CPActivityStatus"
+	TypBasicIndicator   cst.Typ[BasicIndicator, MineBasicIndicator] = "BasicIndicator"
+	TypShowUnit         cst.Typ[ShowUnit, any]                      = "ShowUnit"
+	TypDB               cst.Typ[DB, cst.Options[Database, any]]     = "DB"
+	TypDatabase         cst.Typ[Database, any]                      = "Database"
 )

@@ -3,7 +3,7 @@ package example
 import (
 	"fmt"
 
-	"github.com/rrzu/constMp"
+	"github.com/rrzu/cst"
 )
 
 // 展示单位
@@ -17,9 +17,9 @@ const (
 // ShowUnit 展示单位
 type ShowUnit string
 
-var showUnit = &constMp.Cst[ShowUnit, any]{
-	Typ: constMp.DataTypeString,
-	Words: constMp.Words[ShowUnit, any]{
+var showUnit = &cst.Cst[ShowUnit, any]{
+	Typ: cst.DataTypeString,
+	Words: cst.Words[ShowUnit, any]{
 		{
 			Value:  ShowUnitNone,
 			CnName: "无",
@@ -41,5 +41,5 @@ var showUnit = &constMp.Cst[ShowUnit, any]{
 
 func init() {
 	fmt.Println("init showUnit")
-	constMp.Register(TypShowUnit, showUnit)
+	cst.Register(TypShowUnit, showUnit)
 }
