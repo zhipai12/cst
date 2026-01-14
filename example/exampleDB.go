@@ -51,13 +51,15 @@ var db = &cst.Cst[DB, cst.Options[Database, any]]{
 		},
 		{
 			Value:  DBClickhouse,
-			Group:  &cst.Group{"OLAP"},
+			Group:  &cst.Group{"OLAP", "TEST"},
 			CnName: "Clickhouse",
 		},
 	},
 }
 
 func init() {
-	fmt.Println("init db")
 	cst.Register(TypDB, db)
+
+	newDb := cst.CstWithGroup(db, "TEST")
+	fmt.Printf("newDb: %+v\n", newDb)
 }

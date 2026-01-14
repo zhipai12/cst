@@ -14,7 +14,7 @@ type (
 	FilterFns[T IConstVal, S any] func(word Word[T, S]) bool
 )
 
-// 注册常来容器
+// 注册常量容器
 var containerSlice sync.Map
 
 // Register 注册常量
@@ -87,4 +87,45 @@ func GetFilters[T IConstVal, S any](typ Typ[T, S], filterFns ...FilterFns[T, S])
 	}
 
 	return result
+}
+
+// CstWithGroup 保留包含 groupName 的常量
+func CstWithGroup[T IConstVal, S any](raw *Cst[T, S], groupNames ...GroupName) (new *Cst[T, S]) {
+	if raw == nil {
+		return &Cst[T, S]{}
+	}
+
+	new = &Cst[T, S]{}
+
+	// 如果没有指定分组，则返回空集合（或根据业务需求可返回原始集合）
+	if len(groupNames) == 0 {
+		return new
+	}
+
+	// 创建分组名称映射，提高查找效率
+	groupMap := make(map[GroupName]bool, len(groupNames))
+	for _, name := range groupNames {
+		groupMap[name] = true
+	}
+
+	// 遍历所有常量
+	for _, w := range raw.Words {
+		// 保留分组在指定列表中的常量
+		if w.Group != nil {
+			// 检查字段的分组列表中是否包含任意一个指定的分组
+			for _, fieldGroup := range *w.Group {
+				if groupMap[fieldGroup] {
+					new.Words = append(new.Words, w)
+					break // 找到一个匹配就跳出，避免重复添加
+				}
+			}
+		}
+	}
+
+	// 如果新集合不为空，复制类型信息
+	if len(new.Words) > 0 {
+		new.Typ = raw.Typ
+	}
+
+	return
 }
