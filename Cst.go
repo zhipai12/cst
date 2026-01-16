@@ -3,6 +3,8 @@ package cst
 import (
 	"fmt"
 	"sync"
+
+	"github.com/rrzu/cst/common"
 )
 
 // 变量内存缓存（读多写少 key:*Cst[T, S] value:map[T]Word[T, S]）
@@ -32,9 +34,27 @@ type (
 )
 
 // ToOptions 转换为选项数据格式
-func (c *Cst[T, S]) ToOptions() Options[T, S] {
+func (c *Cst[T, S]) ToOptions(groupNames ...GroupName) Options[T, S] {
 	opts := make([]Option[T, S], 0)
 	for _, mp := range c.Words {
+		if len(groupNames) > 0 {
+			if mp.Group == nil {
+				continue
+			}
+
+			found := false
+			for _, groupName := range groupNames {
+				if !common.InSlice(*mp.Group, groupName) {
+					continue
+				}
+				found = true
+			}
+
+			if !found {
+				continue
+			}
+		}
+
 		var option = Option[T, S]{
 			CnName: mp.CnName,
 			Val:    mp.Value,
