@@ -31,6 +31,8 @@ type (
 
 	Group     []GroupName // 使用分区
 	GroupName string
+
+	Empty struct{}
 )
 
 // ToOptions 转换为选项数据格式
